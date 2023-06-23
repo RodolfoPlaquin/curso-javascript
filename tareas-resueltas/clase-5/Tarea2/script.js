@@ -8,8 +8,20 @@ $botonMostrar.onclick = function(){
     advertencias(validarPrimerNombre , $advertenciaPrimerNombre);
 
     let $segundoNombreUsuario = document.querySelector('#segundo-nombre-usuario');
+    const validarSegundoNombre = validarNombres($segundoNombreUsuario.value);
+    const $advertenciaSegundoNombre = document.querySelector('#advertencia-segundo-nombre');
+    advertencias(validarSegundoNombre , $advertenciaSegundoNombre);
+
     let $ApellidosUsuario = document.querySelector('#apellidos-usuario');
+    const validarApellido = validarApellidos($ApellidosUsuario.value);
+    const $advertenciaApellido = document.querySelector('#advertencia-apellido');
+    advertencias(validarApellido , $advertenciaApellido);
+
     let $edadUsuario = document.querySelector('#edad-usuario');
+    const validarEdades = validarEdad(Number($edadUsuario.value));
+    const $advertenciaEdad = document.querySelector('#advertencia-edad');
+    advertencias(validarEdades , $advertenciaEdad);
+
     let $mostrarDatos = document.querySelector('#mostrar-datos');
     let $tituloSaludo = document.querySelector('#titulo-saludo');
 
@@ -25,6 +37,9 @@ $botonMostrar.onclick = function(){
 
 function validarNombres ( nombre ){
     const regexNombre = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    if(nombre === ""){
+        return "El campo está vacío";
+    }
     if(nombre.value !== ""){
         if(!regexNombre.test(nombre)){
             return "Solo debe contener letras";
@@ -34,34 +49,28 @@ function validarNombres ( nombre ){
             return "Cantidad de letras insuficientes";
         }
     }
-    if(nombre.value === ""){
-        return "El campo está vacío";
-    }
     return true;
 }
 
 function validarApellidos ( apellido ){
-    const regexApellido = /^([A-Za-zÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-zÑñÁáÉéÍíÓóÚú]+)(\s+([A-Za-zÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-zÑñÁáÉéÍíÓóÚú]+))*$/;
-    if(apellido.value !== ""){
+    const regexApellido = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]{2,40}$/;
+    if(apellido !== ""){
         if(!regexApellido.test(apellido)){
-            return "Solo debe contener letras";
-        }
-        const cantidadLetrasApellido = apellido.split("").length;
-        if(cantidadLetrasApellido < 3){
-            return "Cantidad de letras insuficientes";
+            return "Formato incorrecto";
         }
     }
-    if(apellido.value === ""){
+    if(apellido === ""){
         return "El campo está vacío";
     }
     return true;
-}
+} 
 
 function validarEdad ( edad ){
-    if(isNaN( edad )){
-            return "Ingresar un número válido";
-        }
-    if(apellido.value === ""){
+    
+    if(!isNaN( edad )){
+        return "Ingresar un número válido";
+    }
+    if(edad.value === ""){
         return "El campo está vacío";
     }
     return true;

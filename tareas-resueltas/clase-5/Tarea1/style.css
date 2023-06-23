@@ -3,14 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     font-family: 'Montserrat', sans-serif;
 }
+
 h1{
     font-size: 25px;
     text-align: center;
     color: white
 }
+
 .contenedor {
     text-transform: uppercase;
     width: 500px;
@@ -34,4 +37,13 @@ h1{
     background-color: blue;
     color: white;
     border: 0;
+}
+
+#salario-mensual{
+    background-color: white;
+    color: black;
+}
+
+#alerta-tipo{
+    display: none;
 }

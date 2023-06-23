@@ -35,3 +35,10 @@ h1{
     color: white;
     border: 0;
 }
+#salario-mensual{
+    background-color: white;
+    color: black;
+}
+#alerta-tipo{
+    display: none;
+}

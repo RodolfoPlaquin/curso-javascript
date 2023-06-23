@@ -18,19 +18,13 @@ $botonMostrar.onclick = function(){
     advertencias(validarApellido , $advertenciaApellido);
 
     let $edadUsuario = document.querySelector('#edad-usuario');
-    const validarEdades = validarEdad(Number($edadUsuario.value));
+    const validarEdades = validarEdad($edadUsuario.value);
     const $advertenciaEdad = document.querySelector('#advertencia-edad');
     advertencias(validarEdades , $advertenciaEdad);
 
-    let $mostrarDatos = document.querySelector('#mostrar-datos');
-    let $tituloSaludo = document.querySelector('#titulo-saludo');
-
-    $mostrarDatos.innerHTML =   "Primer nombre: " + $primerNombreUsuario.value + "<br>" +
-                                "Segundo nombre: " + $segundoNombreUsuario.value + "<br>" +
-                                "Apellido/s: " + $ApellidosUsuario.value + "<br>" +
-                                "Edad: " + $edadUsuario.value;
-
-    $tituloSaludo.innerText = `Bienvenido, ${$primerNombreUsuario.value}!`;
+    const compruebaCampos = validarCampos(validarPrimerNombre , validarSegundoNombre , validarApellido , validarEdades);
+    
+    mostrarDatos(compruebaCampos , $primerNombreUsuario , $segundoNombreUsuario , $ApellidosUsuario , $edadUsuario);
 
     return false;
 }
@@ -66,12 +60,15 @@ function validarApellidos ( apellido ){
 } 
 
 function validarEdad ( edad ){
-    
-    if(!isNaN( edad )){
+    if(edad === ""){
+        return "El campo está vacío";
+    }
+    const numero = Number(edad);
+    if(isNaN( numero)){
         return "Ingresar un número válido";
     }
-    if(edad.value === ""){
-        return "El campo está vacío";
+    if(numero < 0){
+        return "Edad inválida";
     }
     return true;
 }
@@ -81,5 +78,32 @@ function advertencias ( validacion , advertencia ){
         advertencia.innerText = validacion;
     } else {
         advertencia.innerText = "";
+    }
+}
+
+function validarCampos( primerNombre , segundoNombre, apellidos, edad ){
+    if(typeof primerNombre === 'boolean' && typeof segundoNombre === 'boolean' && typeof apellidos === 'boolean' && typeof edad === 'boolean'){
+        return true;
+    } else {
+        return false;
+    }
+}
+function mostrarDatos( validacion , primerNombre , segundoNombre, apellidos, edad ){
+    if(validacion){
+        let $mostrarDatos = document.querySelector('#mostrar-datos');
+        let $tituloSaludo = document.querySelector('#titulo-saludo');
+        $mostrarDatos.style.display = 'block';
+        $mostrarDatos.innerHTML =   "Primer nombre: " + primerNombre.value + "<br>" +
+                                    "Segundo nombre: " + segundoNombre.value + "<br>" +
+                                    "Apellido/s: " + apellidos.value + "<br>" +
+                                    "Edad: " + edad.value;
+    
+        $tituloSaludo.innerText = `Bienvenido, ${primerNombre.value}!`;
+    } else {
+        let $mostrarDatos = document.querySelector('#mostrar-datos');
+        let $tituloSaludo = document.querySelector('#titulo-saludo');
+
+        $mostrarDatos.style.display = 'none';
+        $tituloSaludo.innerText = `Bienvenido!`;
     }
 }

@@ -3,6 +3,10 @@ const $botonMostrar = document.querySelector('#enviar-datos-usuario');
 $botonMostrar.onclick = function(){
     
     let $primerNombreUsuario = document.querySelector('#primer-nombre-usuario');
+    const validarPrimerNombre = validarNombres($primerNombreUsuario.value);
+    const $advertenciaPrimerNombre = document.querySelector('#advertencia-primer-nombre');
+    advertencias(validarPrimerNombre , $advertenciaPrimerNombre);
+
     let $segundoNombreUsuario = document.querySelector('#segundo-nombre-usuario');
     let $ApellidosUsuario = document.querySelector('#apellidos-usuario');
     let $edadUsuario = document.querySelector('#edad-usuario');
@@ -61,4 +65,12 @@ function validarEdad ( edad ){
         return "El campo está vacío";
     }
     return true;
+}
+
+function advertencias ( validacion , advertencia ){
+    if(typeof validacion === 'string'){
+        advertencia.innerText = validacion;
+    } else {
+        advertencia.innerText = "";
+    }
 }

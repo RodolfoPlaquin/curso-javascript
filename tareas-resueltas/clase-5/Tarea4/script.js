@@ -20,7 +20,7 @@ function ordenarListaValores ( lista ) {
     return lista;
 }
 
-function valorPromedio ( lista ){
+function valoresPromedio ( lista ){
     let sumador = 0;
     for(let i = 0 ; i<lista.length ; i++){
         sumador += lista[i];
@@ -60,9 +60,26 @@ function valoresMasRepetidos ( lista ) {
     return valoresMasRepetidos;
 }
 
+function mostrarValores( promedio , menor , mayor , masRepetidos){
+    const $mostrarValorPromedio = document.querySelector('#valor-promedio');
+    const $mostrarValorMenor = document.querySelector('#valor-menor');
+    const $mostrarValorMayor = document.querySelector('#valor-mayor');
+    const $mostrarValorMasRepetido = document.querySelector('#valor-repetido');
+    
+    $mostrarValorPromedio.innerText = `Valor promedio: ${promedio}`;
+    $mostrarValorMenor.innerText = `Valor menor: ${menor}`;
+    $mostrarValorMayor.innerText = `Valor mayor: ${mayor}`;
+    $mostrarValorMasRepetido.innerText = `Valor/es más repetido/s: ${masRepetidos}`;
+}
+
 const $valoresDeLista = document.querySelectorAll('li');
 const arrayDeValores = obtenerValores( $valoresDeLista );
 const arrayOrdenado = ordenarListaValores( arrayDeValores );
 
-console.log(valoresMasRepetidos ( arrayOrdenado));
+const valorPromedio = valoresPromedio( arrayOrdenado );
+const numeroMenor = valorMenor( arrayOrdenado );
+const numeroMayor = valorMayor( arrayOrdenado );
+const valoresRepetidos = valoresMasRepetidos( arrayOrdenado );
+
+mostrarValores( valorPromedio , numeroMenor , numeroMayor , valoresRepetidos );
 

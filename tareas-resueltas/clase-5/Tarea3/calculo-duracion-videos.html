@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Clase 5 - Tarea 3</title>
 </head>
 <body>
-    <form>
-        <label>Horas:</label>
-        <input type="number" id="horas">
-        <label>Minutos:</label>
-        <input type="number" id="minutos">
-        <label>Segundos:</label>
-        <input type="number" id="segundos">
-        <button id="sumar-tiempo">Calcular tiempo total</button>
-        <div id="mostrar-tiempo-total"></div>
-    </form>
-
+    <div class="container">
+        <form>
+            <label>Horas:</label>
+            <input type="number" id="horas">
+            <label>Minutos:</label>
+            <input type="number" id="minutos">
+            <label>Segundos:</label>
+            <input type="number" id="segundos">
+            <button id="sumar-tiempo">Calcular tiempo total</button>
+        </form>
+        
+        <div id="mostrar-tiempo-total">
+            <strong id="tiempo-total">00:00:00</strong>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

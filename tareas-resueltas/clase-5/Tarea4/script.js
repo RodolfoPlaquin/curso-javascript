@@ -36,7 +36,33 @@ function valorMayor ( lista ){
     return lista[lista.length-1];
 }
 
+function valoresMasRepetidos ( lista ) {
+    let valorActual = null;
+    let contadorActual = 0;
+    let contadorMasRepetido = 0;
+    let valoresMasRepetidos = [];
+  
+    for (let i = 0; i < lista.length; i++) {
+      if (lista[i] === valorActual) {
+        contadorActual++;
+      } else {
+        if (contadorActual > contadorMasRepetido) {
+            valoresMasRepetidos = [valorActual];
+            contadorMasRepetido = contadorActual;
+        } else if (contadorActual === contadorMasRepetido) {
+            valoresMasRepetidos.push(valorActual);
+        }
+            valorActual = lista[i];
+            contadorActual = 1;
+        }
+    }
+  
+    return valoresMasRepetidos;
+}
+
 const $valoresDeLista = document.querySelectorAll('li');
 const arrayDeValores = obtenerValores( $valoresDeLista );
 const arrayOrdenado = ordenarListaValores( arrayDeValores );
+
+console.log(valoresMasRepetidos ( arrayOrdenado));
 

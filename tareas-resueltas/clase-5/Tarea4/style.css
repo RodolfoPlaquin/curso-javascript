@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container{
+    width: 300px;
+}
+#container li{
+    list-style: none;
+    margin-left: 10px;
+}
+#container em{
+    display: block;
+}
+#container #valor-promedio{
+    margin-top: 10px;
+}

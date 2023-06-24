@@ -1,5 +1,3 @@
-const valoresDeLista = document.querySelectorAll('li');
-
 function obtenerValores( lista ){
     const arrayDeValores = [];
     for(let i = 0 ; i<lista.length ; i++){
@@ -22,6 +20,17 @@ function ordenarListaValores ( lista ) {
     return lista;
 }
 
-const arrayDeValores = obtenerValores( valoresDeLista );
+function ValorPromedio ( lista ){
+    let sumador = 0;
+    for(let i = 0 ; i<lista.length ; i++){
+        sumador += lista[i];
+    }
+    return sumador / lista.length;
+}
+
+const $valoresDeLista = document.querySelectorAll('li');
+const arrayDeValores = obtenerValores( $valoresDeLista );
 const arrayOrdenado = ordenarListaValores( arrayDeValores );
+
+console.log(ValorPromedio(arrayOrdenado));
 

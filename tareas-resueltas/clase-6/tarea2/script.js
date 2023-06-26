@@ -4,9 +4,9 @@ $botonAgregarFamiliar.onclick = function(){
     const $generarFormulario = document.querySelector('#calcular-salario');
     $generarFormulario.innerHTML = "";
     cantidadFamiliares++;
-    console.log(cantidadFamiliares);
     for(let i = 1 ; i<=cantidadFamiliares ; i++){
         const crearLabel = document.createElement('label');
+        crearLabel.id = "labelFamiliar" + i;
         crearLabel.textContent = `Salario de familiar N°${i} :`;
         
         const crearInput = document.createElement('input');
@@ -20,7 +20,19 @@ $botonAgregarFamiliar.onclick = function(){
         $generarFormulario.appendChild(crearLabel);
         $generarFormulario.appendChild(crearInput);
         $generarFormulario.appendChild(crearBotonEliminarRegistro);
+        
+        
+        $generarFormulario.appendChild(crearLabel);
+        $generarFormulario.appendChild(crearInput);
+        $generarFormulario.appendChild(crearBotonEliminarRegistro);
+        
+        crearBotonEliminarRegistro.onclick = function() {
+            const parent = this.parentNode;
+            parent.removeChild(crearLabel);
+            parent.removeChild(crearInput);
+            parent.removeChild(crearBotonEliminarRegistro);
+            cantidadFamiliares--;
+        }
     }
-    
     return false;
 }

@@ -48,3 +48,13 @@ function arrayEdades ( cantidad ){
     return arrayEdades;
 }
 
+function calcularEdadPromedio ( arrayEdades ){
+    let sumatoriaEdades = 0;
+    for(let i = 0 ; i<arrayEdades.length ; i++){
+        sumatoriaEdades += arrayEdades[i];
+    }
+    const promedioEdades = sumatoriaEdades / arrayEdades.length;
+    return promedioEdades;
+}
+
+

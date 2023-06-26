@@ -6,8 +6,6 @@ $botonCrearFormulario.onclick = function (){
     
     return false;
 }
-    
-
 
 function generarFormulario ( cantidad ){
     const $formularioGenerado = document.querySelector('#formulario-calculos');
@@ -38,5 +36,15 @@ function generarFormulario ( cantidad ){
     crearBotonLimpiar.id = "limpiar-formulario";
     crearBotonLimpiar.textContent = "Limpiar";
     $formularioGenerado.appendChild(crearBotonLimpiar);
+}
+
+function arrayEdades ( cantidad ){
+    let arrayEdades = [];
+    console.log(arrayEdades);
+    for(let i = 1 ; i<=cantidad ; i++){
+        const $edad = Number(document.querySelector("#edadFamiliar" + i).value);
+        arrayEdades.push($edad);
+    }
+    return arrayEdades;
 }
 

@@ -11,6 +11,8 @@ $botonCrearFormulario.onclick = function (){
         const edadMayor = Math.max(...edadesFamiliares);
         const edadMenor = Math.min(...edadesFamiliares);
     
+        mostrarEdades (edadMenor, edadMayor , edadPromedio);
+
         return false;
     }
     
@@ -65,6 +67,13 @@ function calcularEdadPromedio ( arrayEdades ){
     }
     const promedioEdades = sumatoriaEdades / arrayEdades.length;
     return promedioEdades;
+}
+
+function mostrarEdades (min , max , promedio ){
+    const $mostraredad = document.querySelector('#mostrar-resultados');
+    $mostraredad.innerHTML = "Edad menor : " + min + "<br>" +
+                             "Edad mayor : " + max + "<br>" +
+                             "Edad promedio : " + promedio;
 }
 
 

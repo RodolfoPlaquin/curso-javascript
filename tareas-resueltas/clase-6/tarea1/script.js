@@ -3,6 +3,16 @@ const $botonCrearFormulario = document.querySelector('#generar-formulario');
 $botonCrearFormulario.onclick = function (){
     const cantidadMiembros = Number(document.querySelector('#cantidad-miembros-familia').value);
     generarFormulario( cantidadMiembros );
+
+    const $botonCalcularEdades = document.querySelector('#calcular-edad');
+    $botonCalcularEdades.onclick = function () {
+        const edadesFamiliares = arrayEdades (cantidadMiembros);
+        const edadPromedio = calcularEdadPromedio ( edadesFamiliares );
+        const edadMayor = Math.max(...edadesFamiliares);
+        const edadMenor = Math.min(...edadesFamiliares);
+    
+        return false;
+    }
     
     return false;
 }

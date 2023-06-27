@@ -12,7 +12,7 @@ function agregarFormulario(formulario) {
         $crearLabel.textContent = `Salario de familiar N°${i} :`;
 
         const $crearInput = document.createElement('input');
-        $crearInput.id = "salarioFamiliar" + i;
+        $crearInput.id = "salario-familiar" + i;
         $crearInput.type = "number";
 
         const $crearBotonEliminarRegistro = document.createElement('button');
@@ -43,8 +43,8 @@ function botonCalcular(formulario) {
         formulario.appendChild($crearBotonCalcular);
 
         $crearBotonCalcular.onclick = function () {
-            const salarios = arraySalarios($generarFormulario);
-            const salarioPromedio = calcularSalarioPromedio(salarios);
+            const salarios = arraySalarios();
+            const salarioPromedio = calcularSalarioPromedio(salarios).toFixed(2);
             const salarioMaximo = Math.max(...salarios);
             const salarioMinimo = Math.min(...salarios);
             mostrarResultados(salarioPromedio, salarioMaximo, salarioMinimo);
@@ -53,17 +53,21 @@ function botonCalcular(formulario) {
     }
 }
 
-function arraySalarios(formulario) {
+function arraySalarios() {
     const arraySalarios = [];
+    const salarioInput = document.querySelectorAll("input");
     for (let i = 0; i < cantidadFamiliares; i++) {
-        arraySalarios.push(Number(formulario[i].value));
+        const salario = Number(salarioInput[i].value);
+        if (salario > 0) {
+            arraySalarios.push(salario);
+        }
     }
     return arraySalarios;
 }
 
 function calcularSalarioPromedio(arraySalarios) {
     let sumadorSalarios = 0;
-    for (let i = 0; i < cantidadFamiliares; i++) {
+    for (let i = 0; i < arraySalarios.length; i++) {
         sumadorSalarios += arraySalarios[i];
     }
     const promedio = sumadorSalarios / arraySalarios.length;
@@ -84,6 +88,3 @@ $botonAgregarFamiliar.onclick = function () {
     }
     return false;
 };
-
-
-

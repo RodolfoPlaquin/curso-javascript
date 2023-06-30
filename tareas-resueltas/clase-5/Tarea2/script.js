@@ -3,24 +3,24 @@ const $botonMostrar = document.querySelector('#enviar-datos-usuario');
 $botonMostrar.onclick = function(){
     
     let $primerNombreUsuario = document.querySelector('#primer-nombre-usuario');
-    const validarPrimerNombre = validarNombres($primerNombreUsuario.value);
+    const errorPrimerNombre = validarNombres($primerNombreUsuario.value);
     const $advertenciaPrimerNombre = document.querySelector('#advertencia-primer-nombre');
-    advertencias(validarPrimerNombre , $advertenciaPrimerNombre);
+    mostrarAdvertencias(errorPrimerNombre , $advertenciaPrimerNombre);
 
     let $segundoNombreUsuario = document.querySelector('#segundo-nombre-usuario');
-    const validarSegundoNombre = validarNombres($segundoNombreUsuario.value);
+    const errorSegundoNombre = validarNombres($segundoNombreUsuario.value);
     const $advertenciaSegundoNombre = document.querySelector('#advertencia-segundo-nombre');
-    advertencias(validarSegundoNombre , $advertenciaSegundoNombre);
+    mostrarAdvertencias(errorSegundoNombre , $advertenciaSegundoNombre);
 
     let $ApellidosUsuario = document.querySelector('#apellidos-usuario');
-    const validarApellido = validarApellidos($ApellidosUsuario.value);
+    const errorApellidos = validarApellidos($ApellidosUsuario.value);
     const $advertenciaApellido = document.querySelector('#advertencia-apellido');
-    advertencias(validarApellido , $advertenciaApellido);
+    mostrarAdvertencias(errorApellidos , $advertenciaApellido);
 
     let $edadUsuario = document.querySelector('#edad-usuario');
-    const validarEdades = validarEdad($edadUsuario.value);
+    const errorEdades = validarEdad($edadUsuario.value);
     const $advertenciaEdad = document.querySelector('#advertencia-edad');
-    advertencias(validarEdades , $advertenciaEdad);
+    mostrarAdvertencias(errorEdades , $advertenciaEdad);
 
     const compruebaCampos = validarCampos(validarPrimerNombre , validarSegundoNombre , validarApellido , validarEdades);
     
@@ -73,7 +73,7 @@ function validarEdad ( edad ){
     return true;
 }
 
-function advertencias ( validacion , advertencia ){
+function mostrarAdvertencias ( validacion , advertencia ){
     if(typeof validacion === 'string'){
         advertencia.innerText = validacion;
     } else {
@@ -89,9 +89,9 @@ function validarCampos( primerNombre , segundoNombre, apellidos, edad ){
     }
 }
 function mostrarDatos( validacion , primerNombre , segundoNombre, apellidos, edad ){
+    let $mostrarDatos = document.querySelector('#mostrar-datos');
+    let $tituloSaludo = document.querySelector('#titulo-saludo');
     if(validacion){
-        let $mostrarDatos = document.querySelector('#mostrar-datos');
-        let $tituloSaludo = document.querySelector('#titulo-saludo');
         $mostrarDatos.style.display = 'block';
         $mostrarDatos.innerHTML =   "Primer nombre: " + primerNombre.value + "<br>" +
                                     "Segundo nombre: " + segundoNombre.value + "<br>" +
@@ -100,9 +100,6 @@ function mostrarDatos( validacion , primerNombre , segundoNombre, apellidos, eda
     
         $tituloSaludo.innerText = `Bienvenido, ${primerNombre.value}!`;
     } else {
-        let $mostrarDatos = document.querySelector('#mostrar-datos');
-        let $tituloSaludo = document.querySelector('#titulo-saludo');
-
         $mostrarDatos.style.display = 'none';
         $tituloSaludo.innerText = `Bienvenido!`;
     }
